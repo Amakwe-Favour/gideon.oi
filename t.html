@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gideon Sunday | Frontend Developer</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: 'Poppins', sans-serif;
+            padding-top: 56px;
+        }
+        
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .profile-img {
+            width: 350px;
+            height: 350px;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: #0d6efd;
+            border-radius: 2px;
+        }
+        
+        .about-section, .skills-section, .projects-section, .contact-section {
+            padding: 80px 0;
+        }
+        
+        .skill-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .project-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #0d6efd;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 3px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #0d6efd;
+            border: 2px solid white;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .delay-1 {
+            animation-delay: 0.3s;
+        }
+        
+        .delay-2 {
+            animation-delay: 0.6s;
+        }
+        
+        /* Navbar */
+        .navbar {
+            background-color: rgba(0,0,0,0.8);
+            transition: all 0.3s;
+        }
+        
+        .navbar.scrolled {
+            background-color: #000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Modal styles */
+        .modal-project-img {
+            max-height: 300px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Gideon Sunday</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-lg-start text-center fade-in">
+                    <h1 class="hero-title">Hi, I'm <span class="text-primary">Gideon Sunday</span></h1>
+                    <p class="hero-subtitle">A passionate Frontend Developer creating beautiful, functional websites</p>
+                    <div class="mt-4">
+                        <a href="#projects" class="btn btn-primary btn-lg px-4 me-3" data-bs-toggle="modal" data-bs-target="#projectsModal">View My Work</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-4">Hire Me</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center fade-in delay-1">
+                    <img src="Wha.jpg" alt="Gideon Sunday" class="img-fluid rounded-circle profile-img mt-lg-0 mt-4">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2 class="section-title text-center">About <span class="text-primary">Me</span></h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6 fade-in">
+                    <p class="lead">I'm a Frontend Developer with 3+ years of experience crafting exceptional digital experiences.</p>
+                    <p>My journey in web development began when I discovered my passion for creating things that live on the internet. Since then, I've dedicated myself to mastering the art of frontend development, combining technical skills with an eye for design to build websites that are both beautiful and functional.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or mentoring aspiring developers.</p>
+                    <button id="downloadResume" class="btn btn-primary mt-3">Download Resume</button>
+                </div>
+                <div class="col-lg-6 fade-in delay-1">
+                    <div class="card border-0 shadow-lg mt-lg-0 mt-4">
+                        <div class="card-body p-4">
+                            <h3 class="card-title mb-4">My Experience</h3>
+                            <div class="timeline">
+                                <div class="timeline-item mb-4">
+                                    <h5 class="fw-bold">Frontend Developer</h5>
+                                    <p class="text-muted">Tech Solutions Inc. (2021 - Present)</p>
+                                    <p>Developed responsive web applications using React.js and Vue.js, improved website performance by 40%.</p>
+                                </div>
+                                <div class="timeline-item mb-4">
+                                    <h5 class="fw-bold">Junior Web Developer</h5>
+                                    <p class="text-muted">Digital Creations (2019 - 2021)</p>
+                                    <p>Built and maintained client websites using HTML, CSS, and JavaScript, with a focus on accessibility.</p>
+                                </div>
+                                <div class="timeline-item">
+                                    <h5 class="fw-bold">Web Development Intern</h5>
+                                    <p class="text-muted">Web Masters (2018 - 2019)</p>
+                                    <p>Assisted in developing WordPress themes and plugins, learned fundamentals of web development.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills-section py-5">
+        <div class="container">
+            <h2 class="section-title text-center mb-4">My <span class="text-primary">Skills</span></h2>
+            <p class="text-center mb-5">Technologies I work with</p>
+            
+            <div class="row g-3">
+                <!-- Skill 1 -->
+                <div class="col-md-4 col-6 fade-in">
+                    <div class="skill-item p-3 text-center bg-light rounded">
+                        <i class="fab fa-html5 text-danger fs-3 mb-2"></i>
+                        <h5 class="mb-1">HTML5</h5>
+                        <small class="text-muted d-block mb-2">Semantic markup, accessibility</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-danger" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill 2 -->
+                <div class="col-md-4 col-6 fade-in delay-1">
+                    <div class="skill-item p-3 text-center bg-light rounded">
+                        <i class="fab fa-css3-alt text-primary fs-3 mb-2"></i>
+                        <h5 class="mb-1">CSS3</h5>
+                        <small class="text-muted d-block mb-2">Flexbox, Grid, animations</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-primary" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill 3 -->
+                <div class="col-md-4 col-6 fade-in delay-2">
+                    <div class="skill-item p-3 text-center bg-light rounded">
+                        <i class="fab fa-js-square text-warning fs-3 mb-2"></i>
+                        <h5 class="mb-1">JavaScript</h5>
+                        <small class="text-muted d-block mb-2">ES6+, DOM manipulation</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-warning" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill 4 -->
+                <div class="col-md-4 col-6 fade-in">
+                    <div class="skill-item p-3 text-center bg-light rounded">
+                        <i class="fab fa-react text-info fs-3 mb-2"></i>
+                        <h5 class="mb-1">React.js</h5>
+                        <small class="text-muted d-block mb-2">Components, hooks, Redux</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-info" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill 5 -->
+                <div class="col-md-4 col-6 fade-in delay-1">
+                    <div class="skill-item p-3 text-center bg-light rounded">
+                        <i class="fab fa-bootstrap text-purple fs-3 mb-2"></i>
+                        <h5 class="mb-1">Bootstrap</h5>
+                        <small class="text-muted d-block mb-2">Responsive layouts</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar" style="width: 90%; background-color: #7952b3;"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skill 6 -->
+                <div class="col-md-4 col-6 fade-in delay-2">
+                    <div class="skill-item p-3 text-center bg-light rounded">
+                        <i class="fab fa-git-alt text-dark fs-3 mb-2"></i>
+                        <h5 class="mb-1">Git</h5>
+                        <small class="text-muted d-block mb-2">Version control</small>
+                        <div class="progress" style="height: 6px;">
+                            <div class="progress-bar bg-dark" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects-section">
+        <div class="container">
+            <h2 class="section-title text-center">My <span class="text-primary">Projects</span></h2>
+            <p class="text-center mb-5 lead">Some of my recent work</p>
+            <div class="row g-4">
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6 fade-in">
+                    <div class="card project-card h-100">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Your Dentist Project">
+                        <div class="card-body">
+                            <h4 class="card-title">Your Dentist</h4>
+                            <p class="card-text">A modern dental clinic website with appointment booking functionality and service information.</p>
+                            <div class="tech-used mb-3">
+                                <span class="badge bg-primary">HTML</span>
+                                <span class="badge bg-primary">CSS</span>
+                                <span class="badge bg-primary">JavaScript</span>
+                            </div>
+                            <a href="https://deondigitalmarketingandwebagency.github.io/your_dentist" class="btn btn-primary" target="_blank">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6 fade-in delay-1">
+                    <div class="card project-card h-100">
+                        <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Premier University Project">
+                        <div class="card-body">
+                            <h4 class="card-title">Premier University</h4>
+                            <p class="card-text">An educational institution website with course information, faculty details, and admission portal.</p>
+                            <div class="tech-used mb-3">
+                                <span class="badge bg-primary">HTML</span>
+                                <span class="badge bg-primary">CSS</span>
+                                <span class="badge bg-primary">Bootstrap</span>
+                            </div>
+                            <a href="https://deondigitalmarketingandwebagency.github.io/premier_university/" class="btn btn-primary" target="_blank">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6 fade-in delay-2">
+                    <div class="card project-card h-100">
+                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top" alt="Fitness First GYM Project">
+                        <div class="card-body">
+                            <h4 class="card-title">Fitness First GYM</h4>
+                            <p class="card-text">A fitness center website with membership plans, class schedules, and trainer profiles.</p>
+                            <div class="tech-used mb-3">
+                                <span class="badge bg-primary">HTML</span>
+                                <span class="badge bg-primary">CSS</span>
+                                <span class="badge bg-primary">JavaScript</span>
+                            </div>
+                            <a href="https://fitfirst-gym-hub.lovable.app/" class="btn btn-primary" target="_blank">Visit Website</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <style>
+        /* General Styles */
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form Styles */
+        #contactForm {
+            display: grid;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            outline: none;
+        }
+
+        #contactForm button {
+            background: #3b82f6;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        #contactForm button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        /* Message Styles */
+        .message {
+            position: relative;
+            margin: 1rem 0;
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            max-width: 75%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .message.sender {
+            background: #3b82f6;
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.receiver {
+            background: #f1f5f9;
+            color: #1e293b;
+            margin-right: auto;
+        }
+
+        /* Message triangle indicator */
+        .message.sender::after {
+            content: '';
+            position: absolute;
+            right: -10px;
+            top: 15px;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent #3b82f6;
+            border-style: solid;
+        }
+
+        .message.receiver::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 15px;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent #f1f5f9 transparent transparent;
+            border-style: solid;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .chat-container {
+                padding: 1.5rem;
+            }
+            
+            .message {
+                max-width: 85%;
+                padding: 0.8rem 1.2rem;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <section id="contact" class="contact-section bg-light py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Get In <span class="text-primary">Touch</span></h2>
+            <p class="text-center mb-5">Have a project in mind? Let's talk about it</p>
+            
+            <div class="row">
+                <div class="col-lg-6 fade-in">
+                    <div class="chat-container">
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <input type="text" id="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="email" id="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="tel" id="phone" placeholder="Your Phone" required>
+                            </div>
+                            <div class="mb-3">
+                                <textarea id="message" placeholder="Your Message" required></textarea>
+                            </div>
+                            <button type="submit">Send Message</button>
+                        </form>
+                        <div id="messageContainer"></div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Column -->
+                <div class="col-lg-6 fade-in delay-1 mt-lg-0 mt-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body p-4">
+                            <h4 class="mb-4">Contact Information</h4>
+                            <!-- Add your contact info here -->
+                            <div class="col-lg-6 fade-in delay-1 mt-lg-0 mt-4">
+                                <div class="card border-0 shadow-sm h-100">
+                                    <div class="card-body p-4">
+                                        <h4 class="mb-4">Contact Information</h4>
+                                        <div class="d-flex align-items-start mb-4">
+                                            <i class="fas fa-map-marker-alt text-primary mt-1 me-3"></i>
+                                            <div>
+                                                <h6 class="mb-1">Location</h6>
+                                                <p class="mb-0 text-muted">Abuja, Nigeria</p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-4">
+                                            <i class="fas fa-envelope text-primary mt-1 me-3"></i>
+                                            <div>
+                                                <h6 class="mb-1">Email</h6>
+                                                <p class="mb-0 text-muted">mailto:zirangeyv@yahoo.com
+                                                </div></p>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-start mb-4">
+                                            <i class="fas fa-phone-alt text-primary mt-1 me-3"></i>
+                                            <div>
+                                                <h6 class="mb-1">Phone</h6>
+                                                <p class="mb-0 text-muted">+234 123 456 7890</p>
+                                            </div>
+                                        </div>
+                                        <div class="social-links mt-4">
+                                            <a href="#" class="text-decoration-none me-3"><i class="fab fa-github fa-2x"></i></a>
+                                            <a href="#" class="text-decoration-none me-3"><i class="fab fa-linkedin fa-2x"></i></a>
+                                            <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter fa-2x"></i></a>
+                                            <a href="#" class="text-decoration-none"><i class="fab fa-instagram fa-2x"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const form = document.getElementById('contactForm');
+        const messageContainer = document.getElementById('messageContainer');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const contactData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                message: document.getElementById('message').value
+            };
+
+            const messageEl = document.createElement('div');
+            messageEl.className = 'message sender';
+            messageEl.innerHTML = `
+                <strong>New Contact:</strong><br>
+                ${contactData.message}<br>
+                <em>Tap to view details</em>
+            `;
+
+            const detailsEl = document.createElement('div');
+            detailsEl.style.display = 'none';
+            detailsEl.innerHTML = `
+                Name: ${contactData.name}<br>
+                Email: ${contactData.email}<br>
+                Phone: ${contactData.phone}
+            `;
+
+            messageEl.addEventListener('click', function() {
+                this.classList.toggle('sender');
+                this.classList.toggle('receiver');
+                detailsEl.style.display = detailsEl.style.display === 'none' ? 'block' : 'none';
+                const temp = this.innerHTML;
+                this.innerHTML = detailsEl.innerHTML;
+                detailsEl.innerHTML = temp;
+            });
+
+            messageEl.appendChild(detailsEl);
+            messageContainer.appendChild(messageEl);
+            form.reset();
+        });
+    </script>
+</script>
+</section>
+ </div>
+ </form>
+</div>
+</div>
+                    
+
+        <!-- Footer -->
+        <footer class="bg-primary text-white py-4">
+            <div class="container">
+                <div class="row justify-content-center"> <!-- Centered row -->
+                    <!-- Centered Content Column -->
+                    <div class="col-12 col-md-8 text-center"> <!-- Adjusted column width -->
+                        <div class="tagline mb-2"><strong>Creating impactful experiences through design &amp; code.</strong></div>
+                        <div class="contact-email mb-4">
+                            <strong>Contact me:</strong> <a href="mailto:your.email@example.com" class="text-white">your.email@example.com</a>
+                        </div>
+        
+                        <!-- Social Links -->
+                        <div class="social-links d-flex gap-3 justify-content-center" aria-label="Social media links">
+                            <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" width="24" height="24">
+                                    <!-- GitHub path -->
+                                    <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                                        <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" width="24" height="24">
+                                            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 
+                                                0-.285-.01-1.04-.015-2.04-3.338.725-4.042-1.61-4.042-1.61C4.422 17.07 3.633 16.7 3.633 16.7c-1.087-.744.083-.729.083-.729 
+                                                1.205.084 1.838 1.238 1.838 1.238 1.07 1.834 2.807 1.304 3.492.997.108-.776.42-1.304.763-1.604-2.665-.303-5.467-1.332-5.467-5.93 
+                                                0-1.31.468-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23a11.49 11.49 0 013.003-.404c1.02.005 2.045.138 3.003.404 
+                                                2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 
+                                                0 4.61-2.805 5.625-5.475 5.92.435.375.81 1.096.81 2.21 
+                                                0 1.595-.015 2.877-.015 3.27 0 .315.21.69.825.57C20.565 21.795 
+                                                24 17.295 24 12c0-6.63-5.37-12-12-12z"/>
+                                </svg>
+                            </a>
+                            
+                    
+                            </div>
+                    </div>
+                </div>
+        
+                <!-- Copyright Row -->
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p class="mb-0"><strong>&copy; <span id="year"></span> Gideon Sunday. All rights reserved.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <script>
+            // Set current year dynamically
+            document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
+                </div>
+            </div>
+        </footer>
+        
+        <script>
+            // Set current year dynamically
+            document.getElementById('year').textContent = new Date().getFullYear();
+        </script>
+</script>
+
+<style>
+    .bg-primary {
+        background-color: #005bbb; /* Blue background */
+    }
+    .social-links a {
+        margin: 0 0.75rem;
+        color: #cce4ff;
+        transition: color 0.3s ease;
+    }
+    .social-links a:hover {
+        color: #99ccff;
+    }
+    .contact-email a {
+        color: #cce4ff;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    .contact-email a:hover {
+        color: #99ccff;
+    }
+    .tagline {
+        font-style: italic;
+        margin-bottom: 0.5rem;
+        color: #cce4ff;
+    }
+</style>
+
+    <style>
+        .bg-primary {
+            background-color: #005bbb; /* Blue background */
+        }
+        .social-links a {
+            margin: 0 0.75rem;
+            color: #cce4ff;
+            transition: color 0.3s ease;
+        }
+        .social-links a:hover {
+            color: #99ccff;
+        }
+        .contact-email a {
+            color: #cce4ff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .contact-email a:hover {
+            color: #99ccff;
+        }
+        .tagline {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+            color: #cce4ff;
+        }
+    </style>
+    
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#home" class="text-white text-decoration-none">Back to Top <i class="fas fa-arrow-up ms-1"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Projects Modal -->
+    <div class="modal fade" id="projectsModal" tabindex="-1" aria-labelledby="projectsModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="projectsModalLabel">My Projects</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-4">
+              <!-- Project 1 Preview -->
+              <div class="col-md-6">
+                <div class="card">
+                  <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top modal-project-img" alt="Your Dentist Project">
+                  <div class="card-body">
+                    <h5 class="card-title">Your Dentist</h5>
+                    <p class="card-text">A modern dental clinic website with appointment booking functionality.</p>
+                    <a href="https://deondigitalmarketingandwebagency.github.io/your_dentist" class="btn btn-primary" target="_blank">Visit Website</a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Project 2 Preview -->
+              <div class="col-md-6">
+                <div class="card">
+                  <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top modal-project-img" alt="Premier University Project">
+                  <div class="card-body">
+                    <h5 class="card-title">Premier University</h5>
+                    <p class="card-text">An educational institution website with course information.</p>
+                    <a href="https://deondigitalmarketingandwebagency.github.io/premier_university/" class="btn btn-primary" target="_blank">Visit Website</a>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Project 3 Preview -->
+              <div class="col-md-6">
+                <div class="card">
+                  <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="card-img-top modal-project-img" alt="Fitness First GYM Project">
+                  <div class="card-body">
+                    <h5 class="card-title">Fitness First GYM</h5>
+                    <p class="card-text">A fitness center website with membership plans.</p>
+                    <a href="https://fitfirst-gym-hub.lovable.app/" class="btn btn-primary" target="_blank">Visit Website</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- jsPDF library for generating PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // Don't prevent default if it's the modal trigger
+                if (!this.hasAttribute('data-bs-toggle')) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Generate and download PDF resume
+        document.getElementById('downloadResume').addEventListener('click', function() {
+            // Initialize jsPDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add resume content
+            doc.setFontSize(22);
+            doc.setTextColor(13, 110, 253); // Primary blue color
+            doc.text('Gideon Sunday', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(16);
+            doc.setTextColor(0, 0, 0); // Black color
+            doc.text('Frontend Developer', 105, 30, { align: 'center' });
+            
+            // Add contact information
+            doc.setFontSize(12);
+            doc.text('Lagos, Nigeria | gideon@example.com | +234 123 456 7890', 105, 40, { align: 'center' });
+            
+            // Add a line
+            doc.setDrawColor(13, 110, 253);
+            doc.setLineWidth(0.5);
+            doc.line(20, 45, 190, 45);
+            
+            // Add About section
+            doc.setFontSize(14);
+            doc.setTextColor(13, 110, 253);
+            doc.text('About Me', 20, 55);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            const aboutText = "I'm a Frontend Developer with 3+ years of experience crafting exceptional digital experiences. My journey in web development began when I discovered my passion for creating things that live on the internet. Since then, I've dedicated myself to mastering the art of frontend development, combining technical skills with an eye for design to build websites that are both beautiful and functional.";
+            doc.text(aboutText, 20, 65, { maxWidth: 170 });
+            
+            // Add Skills section
+            doc.setFontSize(14);
+            doc.setTextColor(13, 110, 253);
+            doc.text('Skills', 20, 95);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            doc.text('- HTML5, CSS3, JavaScript (ES6+)', 20, 105);
+            doc.text('- React.js, Vue.js, Bootstrap', 20, 115);
+            doc.text('- Git, Responsive Design, UI/UX Principles', 20, 125);
+            
+            // Add Experience section
+            doc.setFontSize(14);
+            doc.setTextColor(13, 110, 253);
+            doc.text('Experience', 20, 145);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Frontend Developer - Tech Solutions Inc. (2021 - Present)', 20, 155);
+            doc.setFontSize(11);
+            doc.text('- Developed responsive web applications using React.js and Vue.js', 25, 165);
+            doc.text('- Improved website performance by 40% through optimization techniques', 25, 175);
+            
+            doc.setFontSize(12);
+            doc.text('Junior Web Developer - Digital Creations (2019 - 2021)', 20, 190);
+            doc.setFontSize(11);
+            doc.text('- Built and maintained client websites using HTML, CSS, and JavaScript', 25, 200);
+            doc.text('- Focused on accessibility and cross-browser compatibility', 25, 210);
+            
+            // Add Education section
+            doc.setFontSize(14);
+            doc.setTextColor(13, 110, 253);
+            doc.text('Education', 20, 230);
+            
+            doc.setFontSize(11);
+            doc.setTextColor(0, 0, 0);
+            doc.text('B.Sc Computer Science - University of Lagos (2014 - 2018)', 20, 240);
+            
+            // Save the PDF
+            doc.save('GideonSunday_Resume.pdf');
+        });
+    </script>
+</body>
+</html>
